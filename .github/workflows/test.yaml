@@ -26,13 +26,13 @@ jobs:
 
       - name: Run tests-run
         shell: bash
-        run: tests-run > .github/artifacts/coverage_outputs.txt
+        run: make tests-run
       
       - name: Get coverage
         shell: bash
-        run: coverage > .github/artifacts/coverage_outputs.txt
+        run: make coverage > coverage_outputs
       
       - uses: actions/upload-artifact@v2
         with:
-          name: coverage_outputs.txt
-          path: .github/artifacts/coverage_outputs.txt
+          name: coverage_outputs
+          path: coverage_outputs
