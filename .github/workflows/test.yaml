@@ -24,9 +24,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Run unit-tests
+      - name: Run tests-run
         shell: bash
-        run: make unit-tests
+        run: make tests-run
       
       - name: Get coverage
         shell: bash
