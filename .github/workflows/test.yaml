@@ -25,10 +25,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run tests-run
+        if: ${{ always() }}
         shell: bash
         run: make tests-run
       
       - name: Get coverage
+        if: ${{ always() }}
         shell: bash
         run: make coverage > coverage_outputs
       
