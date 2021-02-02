@@ -1,7 +1,7 @@
 name: test
 
 on: 
-  push:
+  pull_request:
     branches:
       - "dev"
       - "master"
@@ -34,7 +34,26 @@ jobs:
         shell: bash
         run: make coverage > coverage_outputs
       
-      - uses: actions/upload-artifact@v2
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
         with:
           name: coverage_outputs
           path: coverage_outputs
+
+  fonctionnal-tests:
+    runs-on: ubuntu-20.04
+    container: docker://epitechcontent/epitest-docker
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Run Tests
+        shell: bash
+        run: make && ./functional-test.sh > functional-tests_outputs
+
+      - name: Upload tests artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: functional-tests_output
+          path: ./functional-tests_output
